@@ -1,10 +1,10 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import EmptyLayout from "../layouts/EmptyLayout";
 import MapServerPage from "../pages/map-server/MapServerPage";
 import TiledMapServerPage from "../pages/map-server/TiledMapServerPage";
 import FeatureServerPage from "../pages/feature-server/FeatureServerPage";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <EmptyLayout />,
@@ -23,14 +23,14 @@ const router = createBrowserRouter([
       {
         path: "",
         id: "map-server-index",
-        element: <MapServerPage/>,
+        element: <MapServerPage />,
       },
       {
         path: "tiled",
         id: "map-server-tiled",
-        element: <TiledMapServerPage/>,
+        element: <TiledMapServerPage />,
       },
-    ]
+    ],
   },
   {
     path: "/feature-server",
@@ -39,9 +39,9 @@ const router = createBrowserRouter([
       {
         path: "",
         id: "feature-server-index",
-        element: <FeatureServerPage/>,
+        element: <FeatureServerPage />,
       },
-    ]
+    ],
   },
 ]);
 
