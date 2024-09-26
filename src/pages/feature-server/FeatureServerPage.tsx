@@ -78,9 +78,9 @@ function FeatureServerPage() {
 
     const map = new Map({
       layers: layers,
-      target: "map",
+      target: map_ref.current as HTMLElement,
       view: new View({
-        center: [-355000, 6700000], // Coordinates centered on the United Kingdom
+        center: [14135300.5, 4510000.5], // Coordinates centered on South Korea in EPSG:3857
         zoom: 6, // Adjusted zoom level for better view
       }),
     });

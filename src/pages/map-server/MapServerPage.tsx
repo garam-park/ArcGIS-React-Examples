@@ -9,15 +9,15 @@ import map_services from "./map_services";
 
 const base_url = "https://sampleserver6.arcgisonline.com/ArcGIS/rest/services";
 function MapServerPage() {
-  const [service , setService] = useState(map_services[2].service);
+  const [service, setService] = useState(map_services[2].service);
   const map_ref = useRef<HTMLDivElement>(null);
   const service_layers = useRef<ImageLayer<ImageArcGISRest>[]>([]);
 
   useEffect(() => {
     service_layers.current.forEach((layer) => {
-      if(layer.get('id') === service) {
+      if (layer.get("id") === service) {
         layer.setVisible(true);
-      }else{
+      } else {
         layer.setVisible(false);
       }
     });
@@ -25,8 +25,7 @@ function MapServerPage() {
 
   useEffect(() => {
     map_services.forEach((s) => {
-      const url =
-      `${base_url}/${s.service}`;
+      const url = `${base_url}/${s.service}`;
       const img_layer = new ImageLayer({
         source: new ImageArcGISRest({
           ratio: 1,
@@ -36,7 +35,7 @@ function MapServerPage() {
         properties: {
           id: s.service, // Add an id property to distinguish layers
         },
-      })
+      });
       img_layer.setVisible(s.service === service);
       service_layers.current.push(img_layer);
     });
@@ -52,24 +51,30 @@ function MapServerPage() {
       layers: layers,
       target: "map",
       view: new View({
-        center: [-10997148, 4569099],
-        zoom: 4,
+        center: [14135300.5, 4510000.5], // Coordinates centered on South Korea in EPSG:3857
+        zoom: 6, // Adjusted zoom level for better view
       }),
     });
 
     map.setTarget(map_ref.current as HTMLElement);
 
     return () => {
-      map.setTarget('');
+      map.setTarget("");
     };
   }, []);
 
   return (
     <>
-      <div ref={map_ref} style={{ height: "calc(var(--vh, 1vh) * 100)" }}>
-      </div>
+      <div ref={map_ref} style={{ height: "calc(var(--vh, 1vh) * 100)" }}></div>
       <ServiceSelector
-        sx={{position: 'fixed',top:0, right:0, paddingTop:4, paddingRight:4, minWidth: 200 }}
+        sx={{
+          position: "fixed",
+          top: 0,
+          right: 0,
+          paddingTop: 4,
+          paddingRight: 4,
+          minWidth: 200,
+        }}
         services={map_services}
         service={service}
         setService={setService}
