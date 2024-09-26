@@ -7,7 +7,7 @@ import "ol/ol.css";
 import ServiceSelector from "./components/ServiceSelector";
 import map_services from "./map_services";
 
-const base_url = "https://sampleserver6.arcgisonline.com/ArcGIS/rest/services";
+const base_url = "https://fgisn.forest.go.kr/arcgis/rest/services";
 function MapServerPage() {
   const [service, setService] = useState(map_services[2].service);
   const map_ref = useRef<HTMLDivElement>(null);
